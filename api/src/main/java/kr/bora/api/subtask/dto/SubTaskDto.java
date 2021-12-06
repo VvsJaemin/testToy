@@ -31,7 +31,7 @@ public class SubTaskDto {
     private LocalDateTime modDate;
 
     @Builder
-    public SubTaskDto(Long subTaskId, Long todoId, Long userId, String title, String start, String end, String assignee) {
+    public SubTaskDto(Long subTaskId, Long todoId, Long userId, String title, String start, String end, String assignee, LocalDateTime regDate, LocalDateTime modDate) {
         this.subTaskId = subTaskId;
         this.todoId = todoId;
         this.userId = userId;
@@ -39,6 +39,7 @@ public class SubTaskDto {
         this.start = start;
         this.end = end;
         this.assignee = assignee;
+        this.regDate = regDate;
+        this.modDate = modDate;
     }
-
 }

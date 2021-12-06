@@ -24,7 +24,7 @@ public interface TodoService {
     void todoRemove(Long todoId);
 
     default TodoDto entityTodoDto(Todo todo) {
-        TodoRequestCommand.TodoRequestCommander users = TodoRequestCommand.TodoRequestCommander.builder()
+        TodoRequestCommand.TodoRequest users = TodoRequestCommand.TodoRequest.builder()
                 .build();
         return TodoDto.builder()
                 .todoId(todo.getTodoId())

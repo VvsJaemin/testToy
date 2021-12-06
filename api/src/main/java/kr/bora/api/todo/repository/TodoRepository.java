@@ -1,6 +1,7 @@
 package kr.bora.api.todo.repository;
 
 import javax.persistence.Entity;
+
 import kr.bora.api.todo.domain.Todo;
 import kr.bora.api.todo.dto.TodoDto;
 import kr.bora.api.user.domain.User;
@@ -18,8 +19,8 @@ import java.util.List;
 @Transactional(rollbackFor = Exception.class)
 public interface TodoRepository extends JpaRepository<Todo, Long> {
 
-    @Query("SELECT to, w FROM Todo to LEFT JOIN to.user w where to.todoId = :todoId" )
-   Todo getTodo(@Param("todoId") Long todoId);
+    @Query("SELECT to, w FROM Todo to LEFT JOIN to.user w where to.todoId = :todoId")
+    Todo getTodo(@Param("todoId") Long todoId);
 
     /*JPA N+1문제 해결 방안 JOIN FETCH 또는 Entity Graph */
     @Query(value = "SELECT a FROM Todo a join fetch a.user")
@@ -28,6 +29,6 @@ public interface TodoRepository extends JpaRepository<Todo, Long> {
     // User 삭제 시 Todo 데이터도 삭제
     @Modifying(clearAutomatically = true)
     @Query("Delete from Todo t where t.user.userId =:userId")
-    void deleteTodoUserId(@Param("userId")long userId);
+    void deleteTodoUserId(@Param("userId") long userId);
 
 }

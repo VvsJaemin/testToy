@@ -17,7 +17,6 @@ public class SubTaskServiceImpl implements SubTaskService {
 
     private final SubTaskRepository subTaskRepository;
 
-    @Transactional
     @Override
     public Long save(SubTaskDto subTaskDto) {
 
@@ -45,7 +44,6 @@ public class SubTaskServiceImpl implements SubTaskService {
     @Override
     public void modify(SubTaskDto subTaskDto) {
         SubTask subTask = dtoToEntity(subTaskDto);
-
         subTaskRepository.save(subTask);
     }
 

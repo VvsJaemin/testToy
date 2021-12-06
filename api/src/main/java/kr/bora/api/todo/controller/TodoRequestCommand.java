@@ -13,7 +13,7 @@ public class TodoRequestCommand {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class TodoRequestCommander {
+    public static class TodoRequest {
         private String title;
         private String start;
         private String end;

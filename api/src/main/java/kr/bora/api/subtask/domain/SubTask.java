@@ -31,10 +31,6 @@ public class SubTask extends BaseEntity {
     @JoinColumn(name = "todo_id")
     private Todo todo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
-
     @Builder
     public SubTask(Long subTaskId, String title, String start, String end, String assignee, Todo todo, User user) {
         this.subTaskId = subTaskId;
@@ -43,7 +39,6 @@ public class SubTask extends BaseEntity {
         this.end = end;
         this.assignee = assignee;
         this.todo = todo;
-        this.user = user;
     }
 
     public void changeTitle(String title) {

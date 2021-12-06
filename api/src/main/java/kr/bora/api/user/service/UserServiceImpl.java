@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
                 .map(UserResponseDto::of)
                 .orElseThrow(() -> new RuntimeException("로그인 유저 정보가 없습니다."));
     }
-
+    @Transactional
     public UserRequestDto modify(UserRequestDto userRequestDto) {
 
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
