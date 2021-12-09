@@ -3,6 +3,7 @@ package kr.bora.api.todo.controller;
 import kr.bora.api.common.aop.LogExecutionTime;
 import kr.bora.api.todo.domain.Todo;
 import kr.bora.api.todo.dto.TodoDto;
+import kr.bora.api.todo.service.TodoService;
 import kr.bora.api.todo.service.TodoServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -21,7 +22,7 @@ import java.util.Map;
 @CrossOrigin(origins = "*")
 public class TodoController {
 
-    private final TodoServiceImpl service;
+    private final TodoService service;
 
     @GetMapping("/list")
     @LogExecutionTime

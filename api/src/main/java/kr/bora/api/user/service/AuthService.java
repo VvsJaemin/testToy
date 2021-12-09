@@ -81,4 +81,9 @@ public class AuthService {
 
         return tokenDto;
     }
+
+    public boolean checkUsername(String username) {
+        return userRepository.existsByusername(username);
+    }
+
 }
