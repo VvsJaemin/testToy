@@ -10,8 +10,9 @@ import org.springframework.util.StopWatch;
 @Aspect
 @Slf4j
 public class LogAspect {
-    
-    @Around("@annotation(LogExecutionTime)")
+
+    // 메서드 호출 실행 시간
+    @Around("execution(* kr.bora.api.*.controller..*.*(..))")
     public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
@@ -22,5 +23,19 @@ public class LogAspect {
         log.info("걸린 시간 : " + stopWatch.getLastTaskTimeMillis() +"ms");
 
         return proceed;
+    }
+
+    // 메서드 호출 Log 위치
+    @Around("execution(* kr.bora.api.*.controller..*.*(..))")
+    public Object printLog(ProceedingJoinPoint joinPoint) throws Throwable {
+
+        String type = "";
+        String name = joinPoint.getSignature().getDeclaringTypeName();
+
+        if (name.contains("Controller") == true)
+            type = "Controller 호출 Method ===> ";
+
+        log.info(type + name + "," + joinPoint.getSignature().getName() + "()");
+        return joinPoint.proceed();
     }
 }

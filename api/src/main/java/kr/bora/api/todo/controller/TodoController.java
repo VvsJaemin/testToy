@@ -1,6 +1,5 @@
 package kr.bora.api.todo.controller;
 
-import kr.bora.api.common.aop.LogExecutionTime;
 import kr.bora.api.todo.domain.Todo;
 import kr.bora.api.todo.dto.TodoDto;
 import kr.bora.api.todo.service.TodoService;
@@ -25,14 +24,12 @@ public class TodoController {
     private final TodoService service;
 
     @GetMapping("/list")
-    @LogExecutionTime
     public ResponseEntity<List<Todo>> todoList() {
 
         return ResponseEntity.ok(service.getList());
     }
 
     @PostMapping("/save")
-    @LogExecutionTime
     public ResponseEntity <String> todoSave(@RequestBody TodoRequestCommand.TodoRequest todoDto) {
         service.save(todoDto.toDto());
         String msg = "Save Success Todo";
@@ -40,14 +37,12 @@ public class TodoController {
     }
 
     @GetMapping("/read/{todoId}")
-    @LogExecutionTime
     public ResponseEntity<TodoDto> todoRead(@PathVariable("todoId") Long todoId) {
 
         return ResponseEntity.ok(service.get(todoId));
     }
 
     @PutMapping("/modify/{todoId}")
-    @LogExecutionTime
     public ResponseEntity<String> todoModify(@PathVariable("todoId") Long todoId, @RequestBody TodoDto todoDto) {
 
         service.modify(todoId, todoDto);
@@ -56,7 +51,6 @@ public class TodoController {
     }
 
     @DeleteMapping("/remove/{todoId}")
-    @LogExecutionTime
     public ResponseEntity<Map<String, Object>> todoRemove(@PathVariable("todoId") Long todoId) {
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("Result", todoId + " 번 Todo가 삭제되었습니다.");
