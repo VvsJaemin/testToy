@@ -19,7 +19,7 @@ public class LogAspect {
         Object proceed = joinPoint.proceed();
 
         stopWatch.stop();
-        log.info(stopWatch.prettyPrint());
+        log.info("걸린 시간 : " + stopWatch.getLastTaskTimeMillis() +"ms");
 
         return proceed;
     }
