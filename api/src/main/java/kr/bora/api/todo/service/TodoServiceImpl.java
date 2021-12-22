@@ -1,21 +1,15 @@
 package kr.bora.api.todo.service;
 
-import kr.bora.api.common.response.CommonResponse;
 import kr.bora.api.subtask.repository.SubTaskRepository;
-import kr.bora.api.todo.controller.TodoRequestCommand;
 import kr.bora.api.todo.domain.Todo;
 import kr.bora.api.todo.dto.TodoDto;
 import kr.bora.api.todo.repository.TodoRepository;
-import kr.bora.api.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Log4j2
 @Service
@@ -25,18 +19,21 @@ public class TodoServiceImpl implements TodoService {
     private final TodoRepository repository;
     private final SubTaskRepository subTaskRepository;
 
-
     @Override
     public List<Todo> getList() {
 
         return repository.getList();
     }
-
     @Override
     public Long save(TodoDto todoDto) {
         Todo todo = toEntitySaveUserId(todoDto);
         repository.save(todo);
         return todoDto.getTodoId();
+    }
+
+    @Override
+    public TodoDto get(Long todoId) {
+        return null;
     }
 
 //
@@ -48,12 +45,12 @@ public class TodoServiceImpl implements TodoService {
 //        return CommonResponse.success(todoDto);
 //    }
 
-    @Override
-    public TodoDto get(Long todoId) {
-      Todo result = repository.getTodo(todoId);
-
-        return entityTodoDto(result);
-    }
+//    @Override
+//    public TodoDto get(Long todoId) {
+//        Todo result = repository.getTodo(todoId);
+//
+//        return entityTodoDto(result);
+//    }
 
     @Transactional
     @Override

@@ -3,13 +3,8 @@ package kr.bora.api.todo.service;
 import kr.bora.api.todo.controller.TodoRequestCommand;
 import kr.bora.api.todo.domain.Todo;
 import kr.bora.api.todo.dto.TodoDto;
-import kr.bora.api.user.domain.User;
-import kr.bora.api.user.dto.UserRequestDto;
-import kr.bora.api.user.util.SecurityUtil;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public interface TodoService {
 

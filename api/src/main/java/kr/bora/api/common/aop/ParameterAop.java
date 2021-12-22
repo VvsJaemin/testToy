@@ -20,20 +20,18 @@ import java.util.Arrays;
 @Log4j2
 public class ParameterAop {
 
+    ObjectMapper objectMapper = new ObjectMapper();
 
     @Pointcut("execution(* kr.bora.api.*.controller..*.*(..))")
     private void cut() {
 
     }
+
     // 파라미터 입력 값
     @Before("cut()")
     public void before(JoinPoint joinPoint) throws JsonProcessingException {
-//        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-//        Method method = methodSignature.getMethod();
-//        log.info(method.getName());
 
         Object[] args = joinPoint.getArgs();
-        ObjectMapper objectMapper = new ObjectMapper();
         for (Object obj : args) {
             log.info("type : " + obj.getClass().getSimpleName());
             log.info("value : " + objectMapper.writeValueAsString(obj));
@@ -44,7 +42,6 @@ public class ParameterAop {
     // 파라미터 입력 후 호출 결과 값
     @AfterReturning(value = "cut()", returning = "returnObj")
     public void afterReturn(Object returnObj) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
         log.info("return Obj");
         log.info(objectMapper.writeValueAsString(returnObj));
 

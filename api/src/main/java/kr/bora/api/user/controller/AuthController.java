@@ -36,6 +36,11 @@ public class AuthController {
         return ResponseEntity.ok(CommonResponse.success(authService.reIssue(tokenRequestDto)));
     }
 
+    // 중복체크
+    @GetMapping("/check/{username}")
+    public ResponseEntity<Boolean> checkUserRequestDto(@PathVariable String username) {
+        return ResponseEntity.ok(authService.checkUsername(username));
+    }
 
 
 }

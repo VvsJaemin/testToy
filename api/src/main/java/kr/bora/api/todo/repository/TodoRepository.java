@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 
 import kr.bora.api.todo.domain.Todo;
 import kr.bora.api.todo.dto.TodoDto;
+import kr.bora.api.todo.repository.search.TodoSearchRepository;
 import kr.bora.api.user.domain.User;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,7 +18,7 @@ import java.util.List;
 
 @Repository
 @Transactional(rollbackFor = Exception.class)
-public interface TodoRepository extends JpaRepository<Todo, Long> {
+public interface TodoRepository extends JpaRepository<Todo, Long>, TodoSearchRepository {
 
     @Query("SELECT to, w FROM Todo to LEFT JOIN to.user w where to.todoId = :todoId")
     Todo getTodo(@Param("todoId") Long todoId);

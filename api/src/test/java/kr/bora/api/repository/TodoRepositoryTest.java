@@ -6,6 +6,10 @@ import kr.bora.api.user.domain.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -45,5 +49,12 @@ public class TodoRepositoryTest {
 
         System.out.println(todo);
         System.out.println(todo.getTodoId());
+    }
+
+    @Test
+    public void testQuery1() {
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("todoId").descending());
+
+        Page<Object[]> result = todoRepository.searchPage("d", "설", pageable);
     }
 }
